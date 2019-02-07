@@ -1,2 +1,2 @@
-# ConsumerGoods
-Software for Consumer Goods industry.
+# Herreria.
+Software for Herreria.
