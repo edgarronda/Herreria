@@ -1,5 +1,8 @@
 {% extends 'base.html'%}
 {% load static %}
+{% load humanize %}
+
+
 {% block content%}
 	 <!-- Breadcrumb -->
   <section id="bc" class="mt-3">
@@ -20,264 +23,54 @@
   <section id="listings" class="py-4">
     <div class="container">
       <div class="row">
-
-        <!-- Listing 1 -->
-         <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="{% static '/img/homes/herreria-2.png' %}" alt="">
-            <div class="card-img-overlay">
-              <h2>
-                <span class="badge badge-secondary text-white">$4,000</span>
-              </h2>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">Residencial Los Pinos</h4>
-                <p>
-                  <i class="fas fa-map-marker text-secondary"></i> Los Pinos Tijuana, 02062</p>
+        {% if listings %}
+          {% for listing in listings %}
+             <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card listing-preview">
+                <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
+                <div class="card-img-overlay">
+                  <h2>
+                    <span class="badge badge-secondary text-white">{{ listing.price | intcomma }}</span>
+                  </h2>
+                </div>
+                <div class="card-body">
+                  <div class="listing-heading text-center">
+                    <h4 class="text-primary">{{ listing.title }}</h4>
+                    <p>
+                      <i class="fas fa-map-marker text-secondary"></i> {{ listing.city }}
+                      {{ listing.state}}</p>
+                  </div>
+                  <hr>
+                  <div class="row py-2 text-secondary">
+                    <div class="col-6">
+                      <i class="fas fa-th-large"></i> Alto: {{ listing.height }}"</div>
+                    <div class="col-6">
+                      <i class="fas fa-th-large"></i> Ancho: {{ listing.width }}"</div>
+                  </div>
+                  <div class="row py-2 text-secondary">
+                    <div class="col-6">
+                      <i class="fas fa-th-large"></i> Tipo: {{ listing.listingtype}}</div>
+                  </div>
+                  <hr>
+                  <div class="row py-2 text-secondary">
+                    <div class="col-8">
+                      <i class="fas fa-user"></i> {{ listing.worker }}</div>
+                  </div>
+                  <div class="row text-secondary pb-2">
+                    <div class="col-6">
+                      <i class="fas fa-clock"></i> {{ listing.list_date | date }}</div>
+                  </div>
+                  <hr>
+                  <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">Mas Informacion</a>
+                </div>
               </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-user"></i> Antonio</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                  <i class="fas fa-clock"></i> Hace 10 dias</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">Mas Informacion</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Listing 2 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="{% static '/img/homes/herreria-2.png' %}" alt="">
-            <div class="card-img-overlay">
-              <h2>
-                <span class="badge badge-secondary text-white">$4,000</span>
-              </h2>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">Residencial Los Pinos</h4>
-                <p>
-                  <i class="fas fa-map-marker text-secondary"></i> Los Pinos Tijuana, 02062</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-user"></i> Antonio</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                  <i class="fas fa-clock"></i> Hace 10 dias</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">Mas Informacion</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Listing 3 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="{% static '/img/homes/herreria-2.png' %}" alt="">
-            <div class="card-img-overlay">
-              <h2>
-                <span class="badge badge-secondary text-white">$4,000</span>
-              </h2>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">Residencial Los Pinos</h4>
-                <p>
-                  <i class="fas fa-map-marker text-secondary"></i> Los Pinos Tijuana, 02062</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-user"></i> Antonio</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                  <i class="fas fa-clock"></i> Hace 10 dias</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">Mas Informacion</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Listing 4 -->
-         <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="{% static '/img/homes/herreria-2.png' %}" alt="">
-            <div class="card-img-overlay">
-              <h2>
-                <span class="badge badge-secondary text-white">$4,000</span>
-              </h2>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">Residencial Los Pinos</h4>
-                <p>
-                  <i class="fas fa-map-marker text-secondary"></i> Los Pinos Tijuana, 02062</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-user"></i> Antonio</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                  <i class="fas fa-clock"></i> Hace 10 dias</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">Mas Informacion</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Listing 5 -->
-         <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="{% static '/img/homes/herreria-2.png' %}" alt="">
-            <div class="card-img-overlay">
-              <h2>
-                <span class="badge badge-secondary text-white">$4,000</span>
-              </h2>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">Residencial Los Pinos</h4>
-                <p>
-                  <i class="fas fa-map-marker text-secondary"></i> Los Pinos Tijuana, 02062</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-user"></i> Antonio</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                  <i class="fas fa-clock"></i> Hace 10 dias</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">Mas Informacion</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Listing 6 -->
-         <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="{% static '/img/homes/herreria-2.png' %}" alt="">
-            <div class="card-img-overlay">
-              <h2>
-                <span class="badge badge-secondary text-white">$4,000</span>
-              </h2>
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 class="text-primary">Residencial Los Pinos</h4>
-                <p>
-                  <i class="fas fa-map-marker text-secondary"></i> Los Pinos Tijuana, 02062</p>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Instalaciones: 2</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-user"></i> Antonio</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                  <i class="fas fa-clock"></i> Hace 10 dias</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">Mas Informacion</a>
-            </div>
-          </div>
-        </div>
+            </div>  
+          {% endfor %}
+        {% else %}
+          <div class ="col-md-12">
+            <p> No se encuentran listados</p>
+          </div>  
+        {% endif %}         
 
       </div>
 
