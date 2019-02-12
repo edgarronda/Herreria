@@ -5,5 +5,5 @@ python:
 install:
   - pip install -r requirements.txt
 
-scrypt:
+script:
   - python tests.py
