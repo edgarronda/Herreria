@@ -66,6 +66,9 @@ def dashboard(request):
 
 
 def logout(request):
-	return redirect('index')
+	if request.method == 'POST':
+		auth.logout(request)
+		messages.success(request, 'Se ha cerrado la sesion')
+		return redirect('index')
 
 

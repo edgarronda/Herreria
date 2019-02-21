@@ -19,7 +19,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="index.html">
+            <a href="{% url 'index' %}">
               <i class="fas fa-home"></i> Inicio</a>
           </li>
           <li class="breadcrumb-item active"> Admin Panel</li>
@@ -32,7 +32,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h2>Bienvenido {usuario}</h2>
+          <h2>Bienvenido {{ user.username }}</h2>
           <p>Aqui estan las estructuras</p>
           <table class="table">
             <thead>
