@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load humanize %}
+{% block title %} | Bienvenido {% endblock %}
 
 {% block content %}
  <!-- Showcase -->
@@ -54,7 +55,7 @@
       </div>
     </div>
   </section>
-  
+
   <!-- Messages -->
   {% include 'partials/_alerts.html' %}
 
