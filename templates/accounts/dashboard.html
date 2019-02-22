@@ -6,7 +6,7 @@
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h1 class="display-4">Panel de administrador</h1>
+          <h1 class="display-4">ADMIN</h1>
           <p class="lead">Administra tu cuenta</p>
         </div>
       </div>
@@ -22,7 +22,7 @@
             <a href="{% url 'index' %}">
               <i class="fas fa-home"></i> Inicio</a>
           </li>
-          <li class="breadcrumb-item active"> Admin Panel</li>
+          <li class="breadcrumb-item active"> Admin</li>
         </ol>
       </nav>
     </div>
@@ -32,40 +32,33 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h2>Bienvenido {{ user.username }}</h2>
-          <p>Aqui estan las estructuras</p>
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Estructura</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>22</td>
-                <td>El refugio</td>
-                <td>
-                  <a class="btn btn-light" href="#">Ver Listado</a>
-                </td>
-              </tr>
-              <tr>
-                <td>43</td>
-                <td>Residencial Aguacaliente</td>
-                <td>
-                  <a class="btn btn-light" href="#">Ver Listado</a>
-                </td>
-              </tr>
-              <tr>
-                <td>31</td>
-                <td>Residencial Los Pinos</td>
-                <td>
-                  <a class="btn btn-light" href="#">Ver Listado</a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <h2>Bienvenido {{ user.first_name }}</h2>
+          {% if contacts %}
+
+              <p>Listado de productos.</p>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Estructura</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for contact in contacts %}
+                    <tr>
+                      <td>{{ contact.id }}</td>
+                      <td>{{ contact.listing }}</td>
+                      <td>
+                        <a class="btn btn-light" href="{% url 'listing' contact.listing_id %}">Ver Producto</a>
+                      </td>
+                    </tr>
+                  {% endfor %} 
+                </tbody>
+              </table>
+          {% else %}
+            <p> No tienes cotizaciones</p>
+          {% endif %}
         </div>
       </div>
     </div>
