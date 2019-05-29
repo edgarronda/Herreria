@@ -104,5 +104,8 @@ venv.bak/
 .mypy_cache/
 
 # Static
-static/
-media/
+#static/
+#media/
+
+#DevTools
+.vscode/
